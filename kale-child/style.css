@@ -1,0 +1,476 @@
+/*
+Theme Name: Kale Child - Bri Steger Golf
+Theme URI: http://bristegergolf.local
+Description: Custom child theme for Bri Steger Golf â bold, vibrant, sporty
+Author: Bri Steger
+Author URI: http://bristegergolf.local
+Template: kale
+Version: 2.0.0
+License: GPLv3 or later
+License URI: http://www.gnu.org/licenses/gpl-3.0.en.html
+Text Domain: kale-child
+*/
+
+/* ==========================================================================
+   VIBRANT PALETTE
+   Hot Pink:    #E91E90
+   Bright Yellow: #FFD700
+   Bright Green:  #2ECC40
+   Dark:          #1a1a2e
+   Light bg:      #fefefe
+   ========================================================================== */
+
+/* --- Base --- */
+body {
+    background-color: #fefefe;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+a {
+    color: #E91E90;
+    transition: color 0.2s ease;
+}
+a:hover,
+a:focus {
+    color: #c4167a;
+    text-decoration: none;
+}
+
+/* --- Headings --- */
+h1, h2, h3, h4, h5, h6 {
+    color: #1a1a2e;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   NAVIGATION â Now at the top, bold style
+   ========================================================================== */
+
+.bsg-nav-top {
+    margin-bottom: 0 !important;
+    margin-top: 0;
+}
+
+.navbar-default {
+    border: none !important;
+    border-bottom: 3px solid #E91E90 !important;
+    background: #1a1a2e !important;
+    border-radius: 0 !important;
+    margin: 0;
+}
+.navbar-default .navbar-collapse {
+    text-align: center;
+}
+.navbar-default .navbar-nav {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #ffffff !important;
+    font-size: 11px;
+    letter-spacing: 3px;
+    padding: 16px 28px;
+    transition: all 0.2s ease;
+}
+.navbar-default .navbar-nav > li > a:hover {
+    background-color: #E91E90 !important;
+    color: #ffffff !important;
+}
+.navbar-default .navbar-nav > .current_page_item > a,
+.navbar-default .navbar-nav > .current_page_item > a:focus,
+.navbar-default .navbar-nav > .current_page_item > a:hover,
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .active > a:hover {
+    background-color: #E91E90 !important;
+    color: #ffffff !important;
+}
+
+/* Search icon in nav */
+.navbar-default .navbar-nav > li.search > a {
+    color: #FFD700 !important;
+}
+.navbar-default .navbar-nav > li.search > a:hover {
+    color: #ffffff !important;
+}
+
+/* Mobile nav toggle */
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #E91E90 !important;
+}
+.navbar-default .navbar-toggle {
+    border-color: #E91E90 !important;
+}
+
+/* ==========================================================================
+   BRANDING â Title + Tagline (below nav, above banner)
+   ========================================================================== */
+
+.bsg-branding {
+    margin-top: 30px !important;
+    margin-bottom: 25px !important;
+    text-align: center;
+}
+
+.logo .header-logo-text {
+    font-size: 56px;
+    letter-spacing: 12px;
+    font-weight: 300;
+    line-height: 1.2;
+    color: #1a1a2e;
+}
+.logo .header-logo-text a {
+    color: #1a1a2e;
+}
+.logo .header-logo-text a:hover {
+    color: #E91E90;
+}
+
+/* Tagline with colorful underline accent */
+.tagline {
+    margin-top: 8px;
+}
+.tagline p {
+    color: #666;
+    font-size: 18px;
+    letter-spacing: 1px;
+    padding-bottom: 15px;
+    position: relative;
+}
+/* Replace the side-lines with a gradient underline */
+.tagline p:before,
+.tagline p:after {
+    display: none !important;
+}
+.tagline p::after {
+    display: block !important;
+    content: "" !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 120px !important;
+    height: 3px !important;
+    border: none !important;
+    background: linear-gradient(90deg, #E91E90, #FFD700, #2ECC40) !important;
+    top: auto !important;
+    margin: 0 !important;
+    right: auto !important;
+}
+
+/* ==========================================================================
+   HERO BANNER â Taller, bolder
+   ========================================================================== */
+
+.frontpage-banner {
+    margin-bottom: 45px;
+    position: relative;
+    overflow: hidden;
+}
+/* Make the banner image taller */
+.frontpage-banner > img {
+    max-width: 100%;
+    width: 100%;
+    min-height: 450px;
+    object-fit: cover;
+}
+/* Darker overlay for more contrast */
+.frontpage-banner:before {
+    background: linear-gradient(135deg, rgba(26,26,46,0.5), rgba(233,30,144,0.2)) !important;
+    opacity: 1 !important;
+}
+/* Caption styling */
+.frontpage-banner .caption h2 {
+    font-size: 44px;
+    letter-spacing: 5px;
+    font-weight: 300;
+    text-transform: none;
+    margin: 0 0 30px;
+    padding: 0 0 25px;
+}
+.frontpage-banner .caption h2:before {
+    border-bottom-color: #FFD700 !important;
+    border-bottom-width: 3px !important;
+    width: 60px;
+    margin-left: -30px;
+}
+.frontpage-banner .caption .read-more {
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: #FFD700;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   BLOG FEED
+   ========================================================================== */
+
+.blog-feed > h2 {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #1a1a2e;
+    position: relative;
+    padding-bottom: 12px;
+    margin-bottom: 30px;
+}
+.blog-feed > h2:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: #E91E90;
+}
+
+/* Post titles */
+.entry-title {
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+.entry-title a {
+    color: #1a1a2e;
+}
+.entry-title a:hover {
+    color: #E91E90;
+}
+
+/* Meta info */
+.entry-meta,
+.entry-meta a {
+    color: #999;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+.entry-meta a:hover {
+    color: #E91E90;
+}
+
+/* Post thumbnail hover */
+.blog-feed .entry-image img {
+    transition: transform 0.4s ease;
+}
+.blog-feed .entry-image:hover img {
+    transform: scale(1.04);
+}
+
+/* ==========================================================================
+   SIDEBAR â Card style with pink accent
+   ========================================================================== */
+
+.sidebar .widget {
+    margin-bottom: 30px;
+    padding: 25px;
+    background-color: #fff;
+    border: 1px solid #f0f0f0;
+    border-top: 4px solid #E91E90;
+    border-radius: 0;
+}
+.sidebar .widget-title {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #1a1a2e;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+/* Search button */
+.widget .search-form .search-field {
+    border: 2px solid #eee;
+    border-radius: 0;
+    padding: 8px 12px;
+}
+.widget .search-form .search-field:focus {
+    border-color: #E91E90;
+    outline: none;
+    box-shadow: none;
+}
+.widget .search-form .search-submit {
+    background-color: #E91E90;
+    border: none;
+    color: #fff;
+    border-radius: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 11px;
+    transition: background-color 0.2s ease;
+}
+.widget .search-form .search-submit:hover {
+    background-color: #c4167a;
+}
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+
+.btn,
+.button,
+input[type="submit"] {
+    background-color: #E91E90;
+    border: none;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 11px;
+    padding: 10px 24px;
+    border-radius: 0;
+    transition: background-color 0.2s ease;
+}
+.btn:hover,
+.button:hover,
+input[type="submit"]:hover {
+    background-color: #c4167a;
+    color: #fff;
+}
+
+/* ==========================================================================
+   PAGINATION
+   ========================================================================== */
+
+.pagination-blog-feed a {
+    color: #1a1a2e;
+    border: 2px solid #E91E90;
+    padding: 8px 18px;
+    transition: all 0.2s ease;
+}
+.pagination-blog-feed a:hover {
+    background-color: #E91E90;
+    color: #fff;
+    border-color: #E91E90;
+}
+
+/* ==========================================================================
+   FOOTER â Dark with bright accents
+   ========================================================================== */
+
+.footer {
+    background-color: #1a1a2e;
+    border-top: 4px solid;
+    border-image: linear-gradient(90deg, #E91E90, #FFD700, #2ECC40) 1;
+    padding: 30px 0;
+    margin-top: 40px;
+}
+.footer,
+.footer .footer-copyright {
+    color: #aaa;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+.footer a {
+    color: #FFD700;
+}
+.footer a:hover {
+    color: #E91E90;
+}
+.footer .credit li {
+    color: #888;
+}
+
+/* Footer sidebar */
+.sidebar-footer {
+    background-color: #f8f8f8;
+    border-top: 3px solid;
+    border-image: linear-gradient(90deg, #E91E90, #FFD700, #2ECC40) 1;
+    padding: 40px 0 20px;
+}
+.sidebar-footer .widget-title {
+    color: #1a1a2e;
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+
+/* ==========================================================================
+   MISC
+   ========================================================================== */
+
+/* Selection highlight */
+::selection {
+    background: #E91E90;
+    color: #fff;
+}
+::-moz-selection {
+    background: #E91E90;
+    color: #fff;
+}
+
+/* Smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Remove top border on main wrapper */
+.main-wrapper {
+    border-top: none;
+}
+
+/* Header row spacing overrides */
+.header-row-2 {
+    margin-bottom: 25px;
+}
+
+/* Gradient accent line below the tagline/above banner */
+.bsg-branding::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 0;
+    margin-top: 20px;
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+    background-color: #1a1a2e;
+    border: none;
+    border-top: 2px solid #E91E90;
+}
+.dropdown-menu > li > a {
+    color: #fff !important;
+    padding: 10px 20px;
+}
+.dropdown-menu > li > a:hover {
+    background-color: #E91E90 !important;
+    color: #fff !important;
+}
+
+/* Category & tag links */
+.entry-meta .cat-links a,
+.entry-meta .tags-links a {
+    color: #E91E90;
+}
+
+/* Comment area styling */
+.comment-reply-link {
+    color: #E91E90;
+}
+.comment-reply-link:hover {
+    color: #c4167a;
+}
+
+/* Widget links */
+.sidebar .widget a {
+    color: #E91E90;
+}
+.sidebar .widget a:hover {
+    color: #c4167a;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .logo .header-logo-text {
+        font-size: 36px;
+        letter-spacing: 6px;
+    }
+    .frontpage-banner > img {
+        min-height: 300px;
+    }
+    .frontpage-banner .caption h2 {
+        font-size: 28px;
+    }
+    .navbar-default {
+        border-bottom-width: 3px !important;
+    }
+}
