@@ -1,0 +1,28 @@
+services:
+  wordpress:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - WORDPRESS_DB_HOST=wordpress-db
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_PASSWORD=wp_db_pass_2026
+      - WORDPRESS_DB_NAME=clientBri
+      - WORDPRESS_DEBUG=false
+    volumes:
+      - wordpress-uploads:/var/www/html/wp-content/uploads
+    networks:
+      - wordpress-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1"]
+      interval: 2s
+      timeout: 10s
+      retries: 10
+
+networks:
+  wordpress-net:
+    external: true
+
+volumes:
+  wordpress-uploads:
