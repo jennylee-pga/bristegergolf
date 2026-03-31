@@ -10,7 +10,6 @@ services:
       - WORDPRESS_DB_USER=wordpress
       - WORDPRESS_DB_PASSWORD=wp_db_pass_2026
       - WORDPRESS_DB_NAME=clientBri
-      - WORDPRESS_DEBUG=false
     volumes:
       - wordpress-uploads:/var/www/html/wp-content/uploads
     networks:
