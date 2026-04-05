@@ -1,6 +1,6 @@
 <?php
 /**
-* Custom footer â Bri Steger Golf
+* Custom footer — Bri Steger Golf
 * Dark footer with gradient accent
 *
 * @package kale-child
@@ -26,7 +26,7 @@
 
             <div class="footer-copyright">
                 <ul class="credit">
-                    <li>Powered by <a href="https://wordpress.org/">WordPress</a></li>
+                    <li>Powered by <a href="https://alternateshotmarketing.com/">Alternate Shot Design</a></li>
                 </ul>
             </div>
 

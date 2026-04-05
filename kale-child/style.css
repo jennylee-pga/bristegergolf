@@ -1,7 +1,7 @@
 /*
 Theme Name: Kale Child - Bri Steger Golf
 Theme URI: http://bristegergolf.local
-Description: Custom child theme for Bri Steger Golf â bold, vibrant, sporty
+Description: Custom child theme for Bri Steger Golf — bold, vibrant, sporty
 Author: Bri Steger
 Author URI: http://bristegergolf.local
 Template: kale
@@ -46,20 +46,60 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   NAVIGATION â Now at the top, bold style
+   HERO SECTION — Full-screen image with title + nav overlaid
+   ========================================================================== */
+
+.bsg-hero-section {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    height: 100vh;
+    overflow: hidden;
+    margin-bottom: 45px;
+}
+
+/* Overlay container: nav at top, title centered in remaining space */
+.bsg-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* Branding area fills remaining space and centers title vertically */
+.bsg-hero-overlay .bsg-branding {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* ==========================================================================
+   NAVIGATION — Below the title, overlaid on hero
    ========================================================================== */
 
 .bsg-nav-top {
     margin-bottom: 0 !important;
     margin-top: 0;
+    width: 100%;
 }
 
 .navbar-default {
     border: none !important;
     border-bottom: 3px solid #E91E90 !important;
-    background: #1a1a2e !important;
+    background: rgba(26, 26, 46, 0.75) !important;
     border-radius: 0 !important;
     margin: 0;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
 }
 .navbar-default .navbar-collapse {
     text-align: center;
@@ -107,15 +147,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   BRANDING â Title + Tagline (below nav, above banner)
+   BRANDING — Title + Tagline (overlaid on hero)
    ========================================================================== */
 
 .bsg-branding {
-    margin-top: 30px !important;
-    margin-bottom: 25px !important;
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
     text-align: center;
+    padding: 0 20px;
 }
 
+.bsg-hero-section .bsg-branding .logo .header-logo-text,
+.bsg-hero-section .bsg-branding .logo .header-logo-text a {
+    color: #ffffff;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
 .logo .header-logo-text {
     font-size: 56px;
     letter-spacing: 12px;
@@ -141,6 +187,10 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 15px;
     position: relative;
 }
+.bsg-hero-section .tagline p {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
+}
 /* Replace the side-lines with a gradient underline */
 .tagline p:before,
 .tagline p:after {
@@ -163,46 +213,43 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   HERO BANNER â Taller, bolder
+   HERO BANNER — Fills the hero section container
    ========================================================================== */
 
-.frontpage-banner {
-    margin-bottom: 45px;
-    position: relative;
+.bsg-hero-section .frontpage-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
     overflow: hidden;
 }
-/* Make the banner image taller */
+/* Make the banner image fill the entire hero section */
+.bsg-hero-section .frontpage-banner > img,
 .frontpage-banner > img {
-    max-width: 100%;
     width: 100%;
-    min-height: 450px;
+    height: 100%;
     object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
-/* Darker overlay for more contrast */
+/* Darker overlay for readability of text on top */
 .frontpage-banner:before {
-    background: linear-gradient(135deg, rgba(26,26,46,0.5), rgba(233,30,144,0.2)) !important;
+    background: linear-gradient(
+        to bottom,
+        rgba(26, 26, 46, 0.55) 0%,
+        rgba(26, 26, 46, 0.3) 40%,
+        rgba(26, 26, 46, 0.3) 60%,
+        rgba(26, 26, 46, 0.55) 100%
+    ) !important;
     opacity: 1 !important;
+    z-index: 1;
 }
-/* Caption styling */
-.frontpage-banner .caption h2 {
-    font-size: 44px;
-    letter-spacing: 5px;
-    font-weight: 300;
-    text-transform: none;
-    margin: 0 0 30px;
-    padding: 0 0 25px;
-}
-.frontpage-banner .caption h2:before {
-    border-bottom-color: #FFD700 !important;
-    border-bottom-width: 3px !important;
-    width: 60px;
-    margin-left: -30px;
-}
-.frontpage-banner .caption .read-more {
-    font-size: 13px;
-    letter-spacing: 4px;
-    color: #FFD700;
-    font-weight: 600;
+/* Hide the default banner caption (title/nav overlay replaces it) */
+.bsg-hero-section .frontpage-banner .caption {
+    display: none;
 }
 
 /* ==========================================================================
@@ -259,7 +306,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   SIDEBAR â Card style with pink accent
+   SIDEBAR — Card style with pink accent
    ========================================================================== */
 
 .sidebar .widget {
@@ -344,7 +391,7 @@ input[type="submit"]:hover {
 }
 
 /* ==========================================================================
-   FOOTER â Dark with bright accents
+   FOOTER — Dark with bright accents
    ========================================================================== */
 
 .footer {
@@ -409,16 +456,12 @@ html {
 
 /* Header row spacing overrides */
 .header-row-2 {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
-/* Gradient accent line below the tagline/above banner */
-.bsg-branding::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 0;
-    margin-top: 20px;
+/* Remove gradient accent line inside hero (not needed) */
+.bsg-hero-section .bsg-branding::after {
+    display: none;
 }
 
 /* Dropdown menu styling */
@@ -458,19 +501,415 @@ html {
     color: #c4167a;
 }
 
+/* ==========================================================================
+   SPONSORS SIDEBAR
+   ========================================================================== */
+
+.bsg-sponsors-widget {
+    border-top: 4px solid #E91E90 !important;
+}
+.bsg-sponsors-widget .widget-title {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #1a1a2e;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-family: "Poppins", "Helvetica Neue", sans-serif;
+}
+
+.bsg-sponsors-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.bsg-sponsor-item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.bsg-sponsor-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.bsg-sponsor-item a {
+    display: block;
+    text-decoration: none;
+    color: #1a1a2e;
+    transition: all 0.2s ease;
+}
+.bsg-sponsor-item a:hover {
+    color: #E91E90;
+}
+.bsg-sponsor-item a:hover .bsg-sponsor-logo img {
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(233, 30, 144, 0.15);
+}
+
+.bsg-sponsor-logo {
+    margin-bottom: 10px;
+    overflow: hidden;
+    border-radius: 4px;
+    background: #f8f8f8;
+    max-width: 300px;
+    max-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bsg-sponsor-logo img {
+    width: 100%;
+    max-width: 300px;
+    max-height: 150px;
+    display: block;
+    object-fit: contain;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bsg-sponsor-name {
+    display: block;
+    font-family: "Poppins", "Helvetica Neue", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.bsg-sponsors-empty {
+    color: #999;
+    font-style: italic;
+    font-size: 13px;
+}
+
+/* ==========================================================================
+   UPCOMING EVENTS — Front Page Section
+   ========================================================================== */
+
+.bsg-frontpage-events-section {
+    margin-bottom: 40px;
+}
+
+.bsg-upcoming-events {
+    padding: 0;
+}
+
+.bsg-events-title {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #1a1a2e;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+    font-family: "Poppins", "Helvetica Neue", sans-serif;
+}
+.bsg-events-title:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: #E91E90;
+}
+
+.bsg-events-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.bsg-event-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    border-left: 4px solid #E91E90;
+    padding: 18px;
+    flex: 1 1 calc(50% - 15px);
+    min-width: 280px;
+    transition: box-shadow 0.2s ease;
+}
+.bsg-event-card:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.bsg-event-date-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 55px;
+    background: #1a1a2e;
+    color: #fff;
+    padding: 10px 8px;
+    border-radius: 4px;
+    text-align: center;
+}
+.bsg-event-month {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+}
+.bsg-event-day {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.1;
+    font-family: "Poppins", sans-serif;
+}
+
+.bsg-event-info {
+    flex: 1;
+}
+.bsg-event-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin: 0 0 6px;
+    font-family: "Poppins", sans-serif;
+    letter-spacing: 0.5px;
+}
+.bsg-event-meta {
+    margin: 0;
+    font-size: 12px;
+    color: #888;
+    font-family: "Poppins", sans-serif;
+}
+.bsg-event-dates {
+    display: inline;
+}
+.bsg-event-location {
+    display: inline;
+}
+.bsg-event-location:before {
+    content: " \2022 ";
+    margin: 0 4px;
+}
+
+/* ==========================================================================
+   SCHEDULE PAGE — Calendar
+   ========================================================================== */
+
+.bsg-schedule-page {
+    padding: 30px 0;
+}
+
+.bsg-schedule-heading {
+    font-size: 28px;
+    letter-spacing: 3px;
+    color: #1a1a2e;
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: "Playfair Display", Georgia, serif;
+}
+
+.bsg-calendar-wrap {
+    max-width: 900px;
+    margin: 0 auto 50px;
+}
+
+.bsg-calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+
+.bsg-cal-month-title {
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: #1a1a2e;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.bsg-cal-nav {
+    background: #1a1a2e;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+    font-family: "Poppins", sans-serif;
+}
+.bsg-cal-nav:hover {
+    background: #E91E90;
+}
+
+.bsg-calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.bsg-calendar-table thead th {
+    background: #1a1a2e;
+    color: #fff;
+    padding: 10px 5px;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+}
+
+.bsg-calendar-table td {
+    border: 1px solid #eee;
+    vertical-align: top;
+    padding: 6px;
+    min-height: 80px;
+    height: 90px;
+    font-family: "Poppins", sans-serif;
+}
+
+.bsg-cal-empty {
+    background: #fafafa;
+}
+
+.bsg-cal-day-num {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #999;
+    margin-bottom: 4px;
+}
+
+.bsg-cal-today {
+    background: #fff8f0;
+}
+.bsg-cal-today .bsg-cal-day-num {
+    color: #E91E90;
+    font-weight: 700;
+}
+
+.bsg-cal-has-event {
+    background: #fef5fa;
+}
+
+.bsg-cal-event-dot {
+    background: #E91E90;
+    color: #fff;
+    font-size: 10px;
+    padding: 2px 5px;
+    border-radius: 3px;
+    margin-bottom: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.bsg-cal-event-name {
+    font-size: 10px;
+    letter-spacing: 0.5px;
+}
+
+/* Schedule list below calendar */
+.bsg-schedule-list {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.bsg-schedule-list-title {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #1a1a2e;
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+    position: relative;
+    font-family: "Poppins", sans-serif;
+}
+.bsg-schedule-list-title:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: #E91E90;
+}
+
+.bsg-schedule-event-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.bsg-schedule-event-row:last-child {
+    border-bottom: none;
+}
+
+.bsg-schedule-event-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 55px;
+    background: #1a1a2e;
+    color: #fff;
+    padding: 10px 8px;
+    border-radius: 4px;
+    text-align: center;
+}
+.bsg-sched-month {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+}
+.bsg-sched-day {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.1;
+    font-family: "Poppins", sans-serif;
+}
+
+.bsg-schedule-event-details h3 {
+    margin: 0 0 4px;
+    font-size: 16px;
+    color: #1a1a2e;
+    font-family: "Poppins", sans-serif;
+}
+.bsg-schedule-event-details p {
+    margin: 0;
+    font-size: 13px;
+    color: #888;
+    font-family: "Poppins", sans-serif;
+}
+
 /* Responsive adjustments */
 @media (max-width: 767px) {
     .logo .header-logo-text {
         font-size: 36px;
         letter-spacing: 6px;
     }
-    .frontpage-banner > img {
-        min-height: 300px;
-    }
-    .frontpage-banner .caption h2 {
-        font-size: 28px;
+    .bsg-hero-section {
+        height: 100vh;
     }
     .navbar-default {
         border-bottom-width: 3px !important;
+    }
+    .bsg-event-card {
+        flex: 1 1 100%;
+    }
+    .bsg-calendar-table td {
+        height: 60px;
+        padding: 3px;
+    }
+    .bsg-cal-event-dot {
+        font-size: 8px;
+        padding: 1px 3px;
+    }
+    .bsg-cal-day-num {
+        font-size: 11px;
     }
 }

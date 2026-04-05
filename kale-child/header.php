@@ -1,11 +1,12 @@
 <?php
 /**
- * Custom Header â Bri Steger Golf
+ * Custom Header — Bri Steger Golf
  *
- * NEW LAYOUT ORDER:
- * 1. Navigation (top)
- * 2. Hero Banner (with site title + tagline overlaid)
- * 3. Content
+ * LAYOUT:
+ * 1. Full-screen hero image as backdrop
+ * 2. Site title + tagline overlaid on hero
+ * 3. Navigation bar overlaid on hero
+ * 4. Content
  *
  * @package kale-child
  */
@@ -52,66 +53,122 @@ if ( function_exists( 'wp_body_open' ) ) {
             <div class="header-row-1-toggle"><i class="fa fa-angle-down"></i><span class="screen-reader-text"><?php _ex('Toggle header', 'screen reader text', 'kale'); ?></span></div>
             <?php } ?>
 
-            <!-- â NAVIGATION FIRST (moved above title) -->
-            <div class="header-row-3 bsg-nav-top">
-                <nav class="navbar navbar-default" role="navigation" aria-label="<?php _ex( 'Main navigation', 'aria label', 'kale' ); ?>">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".header-row-3 .navbar-collapse" aria-expanded="false">
-                        <span class="sr-only"><?php esc_html_e('Toggle Navigation', 'kale'); ?></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <?php if ( has_nav_menu( 'header' ) ) {
-                        $args = array('theme_location'    => 'header',
-                                      'depth'             => 3,
-                                      'container'         => 'div',
-                                      'container_class'   => 'navbar-collapse collapse',
-                                                              'menu_class'        => 'nav navbar-nav',
-                                      'fallback_cb'       => '',
-                                      'walker'            => new wp_bootstrap_navwalker() );
-                        if(kale_get_option('kale_nav_search_icon') == 1)
-                                $args['items_wrap'] = kale_nav_items_wrap();
-                        wp_nav_menu( $args );
-                    } else {
-                        kale_default_nav();
-                    }
-                    ?>
-                </nav>
-            </div>
-            <!-- /Navigation -->
-
-            <!-- â TITLE + TAGLINE (moved below nav) -->
-            <div class="header-row-2 bsg-branding">
-                <div class="logo">
-                    <?php
-                    if(kale_get_option('kale_image_logo_show') == 1) {
-                        if ( function_exists( 'the_custom_logo' ) ) the_custom_logo();
-                    }
-                    else {
-                        $kale_text_logo = kale_get_option('kale_text_logo');
-                        if($kale_text_logo == '') $kale_text_logo = get_bloginfo('name');
-                    ?>
-                        <?php if ( is_front_page() ) { ?>
-                        <h1 class="header-logo-text"><a href="<?php echo esc_url(home_url('/')); ?>"><?php echo esc_html($kale_text_logo) ?></a></h1>
-                        <?php } else { ?>
-                        <div class="header-logo-text"><a href="<?php echo esc_url(home_url('/')); ?>"><?php echo esc_html($kale_text_logo) ?></a></div>
-                        <?php } ?>
-                    <?php } ?>
-                </div>
-                <?php if( display_header_text() ) { ?>
-                <div class="tagline"><?php $tagline = get_bloginfo('description'); if($tagline != '') { ?><p><?php echo esc_html($tagline); ?></p><?php } ?></div>
-                <?php } ?>
-            </div>
-            <!-- /Branding -->
-
         </header>
         <!-- /Header -->
 
-<?php if(is_front_page() && !is_paged() ) {
-get_template_part('parts/frontpage', 'banner');
+<?php if(is_front_page() && !is_paged() ) { ?>
+        <!-- ★ HERO SECTION: Banner image with title + nav overlaid -->
+        <div class="bsg-hero-section">
+
+            <?php get_template_part('parts/frontpage', 'banner'); ?>
+
+            <div class="bsg-hero-overlay">
+                <!-- NAVIGATION (at the very top) -->
+                <div class="header-row-3 bsg-nav-top">
+                    <nav class="navbar navbar-default" role="navigation" aria-label="<?php _ex( 'Main navigation', 'aria label', 'kale' ); ?>">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".header-row-3 .navbar-collapse" aria-expanded="false">
+                            <span class="sr-only"><?php esc_html_e('Toggle Navigation', 'kale'); ?></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <?php if ( has_nav_menu( 'header' ) ) {
+                            $args = array('theme_location'    => 'header',
+                                          'depth'             => 3,
+                                          'container'         => 'div',
+                                          'container_class'   => 'navbar-collapse collapse',
+                                          'menu_class'        => 'nav navbar-nav',
+                                          'fallback_cb'       => '',
+                                          'walker'            => new wp_bootstrap_navwalker() );
+                            if(kale_get_option('kale_nav_search_icon') == 1)
+                                    $args['items_wrap'] = kale_nav_items_wrap();
+                            wp_nav_menu( $args );
+                        } else {
+                            kale_default_nav();
+                        }
+                        ?>
+                    </nav>
+                </div>
+
+                <!-- TITLE + TAGLINE (centered in remaining space) -->
+                <div class="header-row-2 bsg-branding">
+                    <div class="logo">
+                        <?php
+                        if(kale_get_option('kale_image_logo_show') == 1) {
+                            if ( function_exists( 'the_custom_logo' ) ) the_custom_logo();
+                        }
+                        else {
+                            $kale_text_logo = kale_get_option('kale_text_logo');
+                            if($kale_text_logo == '') $kale_text_logo = get_bloginfo('name');
+                        ?>
+                            <?php if ( is_front_page() ) { ?>
+                            <h1 class="header-logo-text"><a href="<?php echo esc_url(home_url('/')); ?>"><?php echo esc_html($kale_text_logo) ?></a></h1>
+                            <?php } else { ?>
+                            <div class="header-logo-text"><a href="<?php echo esc_url(home_url('/')); ?>"><?php echo esc_html($kale_text_logo) ?></a></div>
+                            <?php } ?>
+                        <?php } ?>
+                    </div>
+                    <?php if( display_header_text() ) { ?>
+                    <div class="tagline"><?php $tagline = get_bloginfo('description'); if($tagline != '') { ?><p><?php echo esc_html($tagline); ?></p><?php } ?></div>
+                    <?php } ?>
+                </div>
+
+            </div>
+            <!-- /Hero overlay -->
+
+        </div>
+        <!-- /Hero Section -->
+
+<?php
 get_template_part('parts/frontpage', 'featured');
-} ?>
+} else { ?>
+        <!-- Non-frontpage: title + nav without hero -->
+        <div class="bsg-branding header-row-2">
+            <div class="logo">
+                <?php
+                if(kale_get_option('kale_image_logo_show') == 1) {
+                    if ( function_exists( 'the_custom_logo' ) ) the_custom_logo();
+                }
+                else {
+                    $kale_text_logo = kale_get_option('kale_text_logo');
+                    if($kale_text_logo == '') $kale_text_logo = get_bloginfo('name');
+                ?>
+                    <div class="header-logo-text"><a href="<?php echo esc_url(home_url('/')); ?>"><?php echo esc_html($kale_text_logo) ?></a></div>
+                <?php } ?>
+            </div>
+            <?php if( display_header_text() ) { ?>
+            <div class="tagline"><?php $tagline = get_bloginfo('description'); if($tagline != '') { ?><p><?php echo esc_html($tagline); ?></p><?php } ?></div>
+            <?php } ?>
+        </div>
+        <div class="header-row-3 bsg-nav-top">
+            <nav class="navbar navbar-default" role="navigation" aria-label="<?php _ex( 'Main navigation', 'aria label', 'kale' ); ?>">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".header-row-3 .navbar-collapse" aria-expanded="false">
+                    <span class="sr-only"><?php esc_html_e('Toggle Navigation', 'kale'); ?></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <?php if ( has_nav_menu( 'header' ) ) {
+                    $args = array('theme_location'    => 'header',
+                                  'depth'             => 3,
+                                  'container'         => 'div',
+                                  'container_class'   => 'navbar-collapse collapse',
+                                  'menu_class'        => 'nav navbar-nav',
+                                  'fallback_cb'       => '',
+                                  'walker'            => new wp_bootstrap_navwalker() );
+                    if(kale_get_option('kale_nav_search_icon') == 1)
+                            $args['items_wrap'] = kale_nav_items_wrap();
+                    wp_nav_menu( $args );
+                } else {
+                    kale_default_nav();
+                }
+                ?>
+            </nav>
+        </div>
+<?php } ?>
 
 <a id="content"></a>
