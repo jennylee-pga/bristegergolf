@@ -27,9 +27,6 @@ RUN curl -L https://downloads.wordpress.org/theme/kale.latest-stable.zip -o /tmp
 # Copy the Kale child theme
 COPY kale-child/ /var/www/html/wp-content/themes/kale-child/
 
-# Copy plugins
-COPY plugins/ /var/www/html/wp-content/plugins/
-
 # Fix permissions
 RUN chown -R www-data:www-data /var/www/html/wp-content
 
