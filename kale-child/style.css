@@ -325,6 +325,11 @@ h1, h2, h3, h4, h5, h6 {
     word-break: break-all;
 }
 
+/* Prevent a lone full-width post from stretching the entire content column */
+.blog-feed-posts > .entry-full {
+    max-width: 50%;
+}
+
 .blog-feed > h2 {
     font-size: 12px;
     letter-spacing: 3px;
