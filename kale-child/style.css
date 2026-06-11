@@ -256,6 +256,14 @@ h1, h2, h3, h4, h5, h6 {
    BLOG FEED
    ========================================================================== */
 
+/* Prevent post body text from overflowing its container */
+.entry-summary,
+.entry-content {
+    overflow-wrap: break-word;
+    word-break: break-word;
+    min-width: 0;
+}
+
 .blog-feed > h2 {
     font-size: 12px;
     letter-spacing: 3px;
