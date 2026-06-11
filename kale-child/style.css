@@ -280,6 +280,15 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid #f0f0f0;
     border-top: 3px solid #E91E90;
     overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.blog-feed-posts .entry:hover {
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+    transform: translateY(-3px);
+}
+.blog-feed-posts .entry:hover .entry-title a {
+    color: #E91E90;
 }
 
 /* Thumbnail: fixed height, image fills it */
@@ -303,6 +312,36 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     flex-direction: column;
     padding: 20px;
+}
+
+/* Title — bolder and clearly separated from excerpt */
+.blog-feed-posts .entry .entry-title {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* Excerpt sits below the divider with breathing room */
+.blog-feed-posts .entry .entry-summary {
+    padding-top: 12px;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.7;
+}
+
+/* "Read more" / CTA hint at bottom of excerpt */
+.blog-feed-posts .entry .entry-summary::after {
+    content: "Read more →";
+    display: block;
+    margin-top: 10px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #E91E90;
+    font-weight: 600;
 }
 
 /* Push meta to bottom of card */
