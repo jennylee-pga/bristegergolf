@@ -256,12 +256,73 @@ h1, h2, h3, h4, h5, h6 {
    BLOG FEED
    ========================================================================== */
 
-/* Prevent post body text from overflowing its container */
-.entry-summary,
-.entry-content {
+/* ── Blog post cards ─────────────────────────────────────────────────────── */
+
+/* Make the row use equal-height columns */
+.blog-feed-posts .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+/* Each column stretches to fill the row */
+.blog-feed-posts .row > [class*="col-"] {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Card shell */
+.blog-feed-posts .entry {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    border-top: 3px solid #E91E90;
+    overflow: hidden;
+}
+
+/* Thumbnail: fixed height, image fills it */
+.blog-feed-posts .entry .entry-thumb {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #f8f8f8;
+}
+.blog-feed-posts .entry .entry-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Content area grows to fill remaining card height */
+.blog-feed-posts .entry .entry-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+/* Push meta to bottom of card */
+.blog-feed-posts .entry .entry-meta {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid #f0f0f0;
+}
+
+/* Prevent long URLs / words from overflowing */
+.blog-feed-posts .entry .entry-summary,
+.blog-feed-posts .entry .entry-content {
     overflow-wrap: break-word;
     word-break: break-word;
     min-width: 0;
+}
+
+/* Truncate overly long URLs in the excerpt */
+.blog-feed-posts .entry .entry-summary a {
+    word-break: break-all;
 }
 
 .blog-feed > h2 {
