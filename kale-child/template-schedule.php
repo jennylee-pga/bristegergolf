@@ -96,6 +96,7 @@ $current_year  = isset( $_GET['cal_year'] ) ? absint( $_GET['cal_year'] ) : date
     var calWrap = document.getElementById('bsg-calendar');
     if (!calWrap) return;
 
+    // ── Month navigation ──────────────────────────────────────────────────
     calWrap.addEventListener('click', function(e) {
         var btn = e.target.closest('.bsg-cal-nav');
         if (!btn) return;
@@ -108,6 +109,67 @@ $current_year  = isset( $_GET['cal_year'] ) ? absint( $_GET['cal_year'] ) : date
         fetch(ajaxUrl + '?action=bsg_calendar&month=' + month + '&year=' + year)
             .then(function(r) { return r.text(); })
             .then(function(html) { calWrap.innerHTML = html; });
+    });
+
+    // ── Event tooltips ────────────────────────────────────────────────────
+    // Create one shared tooltip element appended to <body> so it is never
+    // clipped by overflow:hidden on table cells or event pills.
+    var tip = document.createElement('div');
+    tip.id = 'bsg-cal-tooltip';
+    tip.style.cssText = [
+        'position:fixed',
+        'z-index:9999',
+        'background:#1a1a2e',
+        'color:#fff',
+        'font-family:Poppins,sans-serif',
+        'font-size:12px',
+        'line-height:1.5',
+        'padding:8px 12px',
+        'border-radius:4px',
+        'border-left:3px solid #E91E90',
+        'box-shadow:0 4px 16px rgba(0,0,0,.25)',
+        'max-width:240px',
+        'pointer-events:none',
+        'opacity:0',
+        'transition:opacity .15s ease',
+        'white-space:normal',
+    ].join(';');
+    document.body.appendChild(tip);
+
+    function showTip(text, x, y) {
+        tip.textContent = text;
+        // Position above the cursor; keep within viewport
+        var vw = window.innerWidth;
+        var left = Math.min(x + 12, vw - 260);
+        tip.style.left  = left + 'px';
+        tip.style.top   = (y - tip.offsetHeight - 12) + 'px';
+        tip.style.opacity = '1';
+    }
+
+    function hideTip() {
+        tip.style.opacity = '0';
+    }
+
+    // Use event delegation so tooltips still work after AJAX month changes
+    document.addEventListener('mouseover', function(e) {
+        var dot = e.target.closest('.bsg-cal-event-dot');
+        if (!dot) return;
+        var text = dot.getAttribute('data-tooltip') || dot.textContent.trim();
+        if (!text) return;
+        var rect = dot.getBoundingClientRect();
+        showTip(text, rect.left, rect.top);
+    });
+
+    document.addEventListener('mouseout', function(e) {
+        if (!e.target.closest('.bsg-cal-event-dot')) return;
+        hideTip();
+    });
+
+    document.addEventListener('mousemove', function(e) {
+        if (!e.target.closest('.bsg-cal-event-dot')) return;
+        var vw = window.innerWidth;
+        tip.style.left = Math.min(e.clientX + 14, vw - 260) + 'px';
+        tip.style.top  = (e.clientY - tip.offsetHeight - 14) + 'px';
     });
 })();
 </script>
