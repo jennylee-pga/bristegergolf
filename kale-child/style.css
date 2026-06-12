@@ -1025,4 +1025,64 @@ html {
     .bsg-cal-day-num {
         font-size: 11px;
     }
+
+    /* ── Prevent horizontal overflow on mobile ── */
+    html, body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+
+    /* Hero section: kill the negative margin trick that causes overflow */
+    .bsg-hero-section {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    /* All images stay within their parent */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Blog cards: stack to full width, no side-by-side columns */
+    .blog-feed-posts .row {
+        display: block;
+    }
+    .blog-feed-posts .row > [class*="col-"] {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        margin-bottom: 20px;
+    }
+
+    /* Lone full post: remove the 50% cap on mobile */
+    .blog-feed-posts > .entry-full {
+        max-width: 100%;
+    }
+
+    /* Card content: tighten padding, enforce text wrapping */
+    .blog-feed-posts .entry .entry-content {
+        padding: 15px;
+    }
+    .blog-feed-posts .entry .entry-summary,
+    .blog-feed-posts .entry .entry-title,
+    .blog-feed-posts .entry .entry-meta {
+        overflow-wrap: break-word;
+        word-break: break-word;
+        max-width: 100%;
+    }
+
+    /* Thumbnail height slightly shorter on small screens */
+    .blog-feed-posts .entry .entry-thumb {
+        height: 180px;
+    }
+
+    /* Events list: single column */
+    .bsg-events-list {
+        flex-direction: column;
+    }
+    .bsg-event-card {
+        min-width: 0;
+        width: 100%;
+    }
 }
