@@ -281,7 +281,23 @@ h1, h2, h3, h4, h5, h6 {
     border-top: 3px solid #E91E90;
     overflow: hidden;
     cursor: pointer;
+    position: relative; /* needed for the stretched link */
     transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+/* Stretched link — expands the title anchor to cover the entire card */
+.blog-feed-posts .entry .entry-title a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+/* Keep other interactive elements (meta links) clickable above the overlay */
+.blog-feed-posts .entry .entry-meta a,
+.blog-feed-posts .entry .entry-meta {
+    position: relative;
+    z-index: 2;
 }
 .blog-feed-posts .entry:hover {
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
