@@ -592,7 +592,23 @@ function bsg_render_calendar( $month, $year ) {
                     foreach ( $day_events[ $day ] as $ev ) {
                         if ( in_array( $ev['title'], $seen ) ) continue;
                         $seen[] = $ev['title'];
-                        echo '<div class="bsg-cal-event-dot" title="' . esc_attr( $ev['title'] ) . '">';
+
+                        // Build tooltip text: Title + dates + location
+                        $tip = $ev['title'];
+                        if ( $ev['start'] && $ev['end'] ) {
+                            $s_ts = strtotime( $ev['start'] );
+                            $e_ts = strtotime( $ev['end'] );
+                            if ( date( 'M j Y', $s_ts ) === date( 'M j Y', $e_ts ) ) {
+                                $tip .= ' · ' . date( 'M j, Y', $s_ts );
+                            } else {
+                                $tip .= ' · ' . date( 'M j', $s_ts ) . '–' . date( 'j, Y', $e_ts );
+                            }
+                        }
+                        if ( $ev['location'] ) {
+                            $tip .= ' · ' . $ev['location'];
+                        }
+
+                        echo '<div class="bsg-cal-event-dot" title="' . esc_attr( $ev['title'] ) . '" data-tooltip="' . esc_attr( $tip ) . '">';
                         echo '<span class="bsg-cal-event-name">' . esc_html( $ev['title'] ) . '</span>';
                         echo '</div>';
                     }

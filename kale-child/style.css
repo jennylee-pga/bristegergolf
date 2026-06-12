@@ -940,6 +940,59 @@ html {
     letter-spacing: 0.5px;
 }
 
+/* ── Calendar event tooltip ─────────────────────────────────────────────── */
+
+.bsg-cal-event-dot {
+    position: relative; /* anchor for the tooltip */
+}
+
+/* Tooltip bubble */
+.bsg-cal-event-dot::after {
+    content: attr(data-tooltip);
+    display: block;
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a1a2e;
+    color: #fff;
+    font-size: 12px;
+    font-family: "Poppins", sans-serif;
+    line-height: 1.5;
+    white-space: normal;
+    width: 220px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border-left: 3px solid #E91E90;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    z-index: 100;
+}
+
+/* Tooltip arrow */
+.bsg-cal-event-dot::before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: calc(100% + 2px);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #1a1a2e;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    z-index: 100;
+}
+
+/* Show on hover */
+.bsg-cal-event-dot:hover::after,
+.bsg-cal-event-dot:hover::before {
+    opacity: 1;
+}
+
 /* Schedule list below calendar */
 .bsg-schedule-list {
     max-width: 900px;
